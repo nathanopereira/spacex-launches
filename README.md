@@ -6,12 +6,12 @@
 [https://spacex-launches-nathan.vercel.app/](https://spacex-launches-nathan.vercel.app/)
 
 ## Resumo
-SpaceX Launches exibe os detalhes sobre todos os lançamentos realizados e os previsto pela SpaceX.
+SpaceX Launches exibe os detalhes sobre todos os lançamentos realizados e os previstos pela SpaceX.
 
 Os dados são extraídos a partir da API da SpaceX [https://github.com/r-spacex/SpaceX-API](https://github.com/r-spacex/SpaceX-API).
 ## Estrutura do projeto
 - O projeto utiliza [Next.js](https://nextjs.org/)
-- Na pasta `pages/api` estão contidas os endpoints responsáveis por consultar a API da SpaceX e formatar para entregar ao front.
+- Na pasta `pages/api` estão contidos os endpoints responsáveis por consultar a API da SpaceX e formatar para entregar os dados ao front.
 
 ## Rodar o projeto
 ### Requisitos
