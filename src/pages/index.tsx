@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from 'react'
 
 interface ILaunch {
   name: string;
+  id: string;
   details: string;
   rocket: string;
   date_utc: string;
@@ -12,13 +13,13 @@ interface ILaunch {
 
 export default function Home() {
   const [nextLaunch, setNextLaunch] = useState<ILaunch | null>(null)
-  const [isLoadingNextLaunch, setisLoadingNextLaunch] = useState(false);
 
   const [lastLaunch, setLastLaunch] = useState(null)
 
   const [pastLaunches, setPastLaunches] = useState(null)
 
-  const [upcomingLaunches, setUpcomingLaunches] = useState(null)
+  const [upcomingLaunches, setUpcomingLaunches] = useState<ILaunch[]>([])
+  const [showUpcomingLaunches, setShowUpcomingLaunches] = useState(false)
 
   const fetchNextLaunch = useCallback(
     async () => {
@@ -29,8 +30,18 @@ export default function Home() {
     [],
   )
 
+  const fetchUpcomingLaunches = useCallback(
+    async () => {
+      const {data:{docs}} = await axios.get('/api/launches/upcoming')
+
+      setUpcomingLaunches(docs)
+    },
+    [],
+  )
+
   useEffect(() => {
     fetchNextLaunch()
+    fetchUpcomingLaunches()
   }, [])
 
   return (
@@ -48,11 +59,21 @@ export default function Home() {
           </h1>
         </header>
 
-        <div className="col-12 col-md-10 mx-auto">
-          <button type="button" className="button-show-upcoming" title="See upcoming launches">
-            Upcoming Launches
-          </button>
-        </div>
+        {upcomingLaunches.length > 0 && !showUpcomingLaunches && (
+          <div className="col-12 col-md-10 mx-auto">
+            <button type="button" onClick={() => setShowUpcomingLaunches(true)} className="button-show-upcoming" title="See upcoming launches">
+              Upcoming Launches
+            </button>
+          </div>
+        )}
+
+        {upcomingLaunches.length > 0 && showUpcomingLaunches && (
+          <div className="col-12 col-md-10 mx-auto">
+            {upcomingLaunches.map(upcoming => (
+              <Launch key={upcoming.id} data={upcoming} type="upcoming" />
+            ))}
+          </div>
+        )}
 
         {nextLaunch && (
           <div className="col-12 col-md-11 mx-auto">
