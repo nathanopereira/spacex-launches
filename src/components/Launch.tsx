@@ -43,6 +43,10 @@ const Launch: React.FC<LaunchProps> = ({ data: { name, details, rocket, date_utc
     }
   }, [type])
 
+  const formattedDate = useMemo(() => {
+    return format(parseISO(date_utc), 'dd MMM yyyy HH:mm')
+  }, [date_utc])
+
   return (
     <article className={`launch is-${type}`}>
       {launchLabel && <div className="launch-label">
@@ -64,10 +68,12 @@ const Launch: React.FC<LaunchProps> = ({ data: { name, details, rocket, date_utc
           </div>
           <div className="launch-date">
             <span>Date</span>
-            <strong className="highlight">{format(parseISO(date_utc), 'dd MMM yyyy hh:mm')}</strong>
+            <strong className="highlight">{formattedDate}</strong>
           </div>
         </div>
-        <p className="launch-details-description">{details}</p>
+        {type !== 'upcoming' && (
+          <p className="launch-details-description">{details}</p>
+        )}
       </div>
     </article>
   );
