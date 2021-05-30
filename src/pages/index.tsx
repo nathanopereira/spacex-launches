@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main className="container">
       <Head>
-        <link rel="icon" type="image/x-icon" href="static/images/favicon.ico"/>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
         <title>SpaceX Launches | by @nathanopereira</title>
       </Head>
 
