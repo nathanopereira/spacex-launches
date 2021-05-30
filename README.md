@@ -25,4 +25,6 @@ Os dados são extraídos a partir da API da SpaceX [https://github.com/r-spacex/
 - Rode `npm run dev`
 - Acesse [http://localhost:3000](http://localhost:3000)
 
+## Rodar os testes
 
+- Acesse a pasta do projeto e rode `npm run test`
