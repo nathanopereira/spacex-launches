@@ -11,12 +11,18 @@ interface ILaunch {
   date_utc: string;
 }
 
+interface PastLaunchesPaginationProps {
+  hasNextPage: boolean;
+  page: number;
+}
+
 export default function Home() {
   const [nextLaunch, setNextLaunch] = useState<ILaunch | null>(null)
 
   const [lastLaunch, setLastLaunch] = useState<ILaunch | null>(null)
 
-  const [pastLaunches, setPastLaunches] = useState(null)
+  const [pastLaunches, setPastLaunches] = useState<ILaunch[]>([])
+  const [pastLaunchesPagination, setPastLaunchesPagination] = useState<PastLaunchesPaginationProps>({ page: 1 } as PastLaunchesPaginationProps)
 
   const [upcomingLaunches, setUpcomingLaunches] = useState<ILaunch[]>([])
   const [showUpcomingLaunches, setShowUpcomingLaunches] = useState(false)
@@ -48,10 +54,23 @@ export default function Home() {
     [],
   )
 
+  const fetchPastLaunches = useCallback(
+    async () => {
+      const {data} = await axios.get('/api/launches/past', {params: {page: pastLaunchesPagination.page + 1}})
+
+      const {docs, ...rest} = data
+
+      setPastLaunches(prevState => [...prevState, ...docs])
+      setPastLaunchesPagination(rest)
+    },
+    [pastLaunchesPagination],
+  )
+
   useEffect(() => {
     fetchNextLaunch()
     fetchUpcomingLaunches()
     fetchLastLaunch()
+    fetchPastLaunches()
   }, [])
 
   return (
@@ -96,33 +115,15 @@ export default function Home() {
             <Launch data={lastLaunch} type="latest" />
           )}
 
-          <article className="launch is-past">
-            <div className="rocket">
-              <div className="rocket-name">
-                <span>Rocket</span>
-                <strong className="highlight">Falcon 9</strong>
-              </div>
-            </div>
-            <div className="launch-details">
-              <div className="launch-details-header">
-                <div className="launch-name">
-                  <span>Name</span>
-                  <h2 className="highlight">CRS-22</h2>
-                </div>
-                <div className="launch-date">
-                  <span>Date</span>
-                  <strong className="highlight">03/06/2021 - 17:29:00</strong>
-                </div>
-              </div>
-              <p className="launch-details-description">
-                SpaceX's 22nd ISS resupply mission on behalf of NASA, this mission sends essential supplies to the International Space Station using the cargo variant of SpaceX's Dragon 2 spacecraft. The external payload for this mission is the first pair of ISS Roll Out Solar Arrays. Falcon 9 and Dragon launch from LC-39A, Kennedy Space Center and the booster is expected to land on an ASDS. The mission will be complete with splashdown and recovery of the capsule and down cargo.
-              </p>
-            </div>
-          </article>
+          {pastLaunches.length > 0 && pastLaunches.map(past => (
+            <Launch data={past} key={past.id} />
+          ))}
 
-          <button type="button" className="button-show-more-launches" title="See more launches">
-            See more launches
-          </button>
+          {pastLaunchesPagination.hasNextPage && (
+            <button type="button" onClick={() => fetchPastLaunches()} className="button-show-more-launches" title="See more launches">
+              See more launches
+            </button>
+          )}
         </div>
       </div>
 
