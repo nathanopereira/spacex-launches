@@ -3,6 +3,7 @@ import React from 'react';
 const MonitoringScripts: React.FC = () => {
   return (
     <>
+      <script src="https://www.googleoptimize.com/optimize.js?id=OPT-PSJRBWH"/>
       {/* // <!-- Hotjar Tracking Code for https://spacex-launches-nathan.vercel.app/ --> */}
       <script dangerouslySetInnerHTML={{
         __html: `
