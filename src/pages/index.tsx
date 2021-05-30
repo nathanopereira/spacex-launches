@@ -79,7 +79,8 @@ export default function Home() {
         <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
         <title>SpaceX Launches | by @nathanopereira</title>
         {process.env.NODE_ENV === 'production' && (
-          // <!-- Hotjar Tracking Code for https://spacex-launches-nathan.vercel.app/ -->
+          <>
+          {/* // <!-- Hotjar Tracking Code for https://spacex-launches-nathan.vercel.app/ --> */}
           <script dangerouslySetInnerHTML={{ __html: `
             (function(h,o,t,j,a,r){
                 h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -90,6 +91,16 @@ export default function Home() {
                 a.appendChild(r);
             })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
           `}}/>
+          {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-MW85VSXKW6"/>
+          <script dangerouslySetInnerHTML={{__html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-MW85VSXKW6');
+          `}} />
+          </>
         )}
       </Head>
 
