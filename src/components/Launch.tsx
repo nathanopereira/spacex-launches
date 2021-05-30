@@ -49,7 +49,7 @@ const Launch: React.FC<LaunchProps> = ({ data: { name, details, rocket, date_utc
 
   return (
     <article className={`launch is-${type}`}>
-      {launchLabel && <div className="launch-label">
+      {launchLabel && <div className="launch-label" data-testid="label">
         {launchLabel}
       </div>}
       <div className="rocket" style={rocketData?.flickr_images[0] && { backgroundImage: `url(${rocketData?.flickr_images[0]})` }}>
@@ -72,7 +72,7 @@ const Launch: React.FC<LaunchProps> = ({ data: { name, details, rocket, date_utc
           </div>
         </div>
         {type !== 'upcoming' && (
-          <p className="launch-details-description">{details}</p>
+          <p className="launch-details-description" data-testid="details">{details}</p>
         )}
       </div>
     </article>
