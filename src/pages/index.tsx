@@ -83,7 +83,7 @@ export default function Home() {
       <div className="row">
         <header className="col-12 header-page">
           <h1 className="text-white text-center my-5">
-            <img src="/spacex.svg" title="SpaceX" alt="SpaceX"/>
+            <img src="/spacex.svg" title="SpaceX" className="img-fluid" alt="SpaceX"/>
             <span className="d-block">Launches</span>
           </h1>
         </header>
