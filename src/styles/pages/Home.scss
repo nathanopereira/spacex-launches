@@ -1,0 +1,200 @@
+.header-page{
+  span{
+    font-size: 18px;
+    margin-top: 10px;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 16px;
+  }
+}
+
+.button-show-upcoming,
+.button-show-more-launches{
+  background-color: #242B2A;
+  color: #B3F2EA;
+
+  border: 0;
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+
+  letter-spacing: 2px;
+
+  &:hover{
+    opacity: .9;
+  }
+}
+
+.button-show-more-launches{
+  background: transparent;
+  border: 1px solid #3b4e4c;
+}
+
+.launch{
+  background-color: #222;
+  color:#ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: default;
+
+  font-size: 13px;
+
+  transition: all .3s ease;
+
+  display: flex;
+  position: relative;
+
+  margin-bottom: 20px;
+
+  strong{
+    display: block;
+  }
+
+  .highlight{
+    color: #fff;
+  }
+
+  .launch-label{
+    position:absolute;
+    padding: 5px 10px;
+
+    color: #111;
+    font-size: .9em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .rocket{
+    display: flex;
+    flex: 5;
+    transition: all .3s ease;
+
+    background-position: center;
+    background-size: cover;
+    background-color: #333;
+
+    .rocket-name{
+      margin-top: auto;
+      padding: 15px 20px 20px;
+      flex: 1;
+
+      text-align: right;
+      font-size: 1.1em;
+      line-height: 1.1;
+
+      background: rgba(0,0,0,.7);
+      background: linear-gradient(0deg, rgba(20,20,20,.9) 15%, rgba(0,0,0,0) 100%);
+
+      strong{
+        font-size: 1.3em;
+      }
+    }
+  }
+
+  .launch-details{
+    flex: 8;
+    padding: 30px;
+
+    .launch-details-header{
+      display: flex;
+      font-size: 1.1em;
+
+      div + div{
+        margin-left: 15px;
+      }
+
+      h2, strong{
+        margin: 0;
+        font-size: 1.3em;
+        font-weight: bold;
+        line-height: 1.1;
+      }
+    }
+
+    p{
+      margin: 0;
+    }
+
+    .launch-details-description{
+      font-size: 1em;
+      margin-top: 20px;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+  }
+
+  &.is-past{
+    opacity: .5;
+    .rocket{
+      background-blend-mode: luminosity;
+    }
+    &:hover{
+      opacity: 1;
+      .rocket{
+        background-blend-mode: normal;
+      }
+    }
+  }
+
+  &.is-next{
+    background-color: #333;
+    font-size: 15px;
+    box-shadow: 0 0 0 2px #00FF75;
+
+    .highlight{
+      color: #00FF75;
+    }
+
+    .launch-label{
+      background: #00FF75;
+    }
+  }
+
+  &.is-latest{
+    opacity: .8;
+    background-color: #222;
+    &:hover{
+      opacity: 1;
+    }
+
+    .highlight{
+      color: #EAFFBC;
+    }
+
+    .launch-label{
+      background: #EAFFBC;
+    }
+  }
+
+  &.is-upcoming{
+    border: 1px dashed #BCFFF7;
+
+    .rocket{
+      .rocket-name{
+        margin: 0;
+        display: flex;
+        align-self: stretch;
+        justify-content: center;
+        flex-direction: column;
+      }
+    }
+
+    .rocket .rocket-name,
+    .launch-details{
+      padding: 20px;
+    }
+
+    .launch-label{
+      background: #BCFFF7;
+      font-size: .8em
+    }
+
+    .highlight{
+      color: #BCFFF7;
+    }
+  }
+}
