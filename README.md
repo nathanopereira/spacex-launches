@@ -13,7 +13,7 @@ Os dados são extraídos a partir da API da SpaceX [https://github.com/r-spacex/
 - O projeto utiliza [Next.js](https://nextjs.org/)
 - Na pasta `pages/api` estão contidos os endpoints responsáveis por consultar a API da SpaceX e formatar para entregar os dados ao front.
 
-## Rodar o projeto
+## Para rodar o projeto
 ### Requisitos
 - Necessário ter o [NodeJS](https://nodejs.org/en/download/) instalado
 ### Rodando o projeto
@@ -25,6 +25,6 @@ Os dados são extraídos a partir da API da SpaceX [https://github.com/r-spacex/
 - Rode `npm run dev`
 - Acesse [http://localhost:3000](http://localhost:3000)
 
-## Rodar os testes
+## Para rodar os testes
 
 - Acesse a pasta do projeto e rode `npm run test`
