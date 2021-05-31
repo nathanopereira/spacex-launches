@@ -4,6 +4,9 @@ import api from '../../../config/spacexApi'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { data } = await api.post(`/launches/query`, {
+    query: {
+      upcoming: false
+    },
     options: {
       page: req.query.page || 1,
       sort: { date_utc: -1 }
