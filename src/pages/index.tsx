@@ -39,9 +39,11 @@ export default function Home() {
 
   const fetchUpcomingLaunches = useCallback(
     async () => {
-      const {data:{docs}} = await axios.get('/api/launches/upcoming')
+      const {data} = await axios.get('/api/launches/upcoming')
 
-      setUpcomingLaunches(docs)
+      const ordenedLaunches = data.sort((a, b) => b.date_unix - a.date_unix)
+
+      setUpcomingLaunches(ordenedLaunches)
     },
     [],
   )
